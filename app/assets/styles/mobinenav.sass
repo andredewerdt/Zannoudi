@@ -1,0 +1,56 @@
+@media screen and (max-width: 768px)
+  navm.mobile-nav
+    background: #000099
+    display: block !important
+    position: fixed
+    bottom: 0
+    width: 100%
+    z-index: 666
+    height: 52px
+    left: 0px
+
+@media screen and (max-width: 768px)
+  navm.mobile-nav.landscape
+    display: none !important
+
+@media screen and (max-width: 768px)
+  navm.mobile-nav ul
+    display: block
+    width: 100%
+    height: 52px
+    padding-left: 0
+  navm.mobile-nav ul li
+    display: inline-block
+    height: 52px
+    margin: 0
+    padding: 0
+  navm.mobile-nav ul li a
+    line-height: 52px
+    color: #fff
+    padding: 0
+    text-align: center
+    display: block
+    width: 100%
+    font-size: 22px
+  navm.mobile-nav ul li:not(:nth-child(5))
+    min-width: 10%
+    width: 22%
+  navm.mobile-nav #facebook a:before
+    font-family: "FontAwesome"
+    content: "\f09a"
+  navm.mobile-nav #mail a:before
+    font-family: "FontAwesome"
+    content: "\f003"
+  navm.mobile-nav #whatsapp a:before
+    font-family: "FontAwesome"
+    content: "\f232"
+  navm.mobile-nav #telefoon a:before
+    font-family: "FontAwesome"
+    content: "\f095"
+
+navm.mobile-nav
+  display: none
+
+div.cont_mn
+  margin-left: -15px
+  margin-right: -15px
