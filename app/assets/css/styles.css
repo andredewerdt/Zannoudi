@@ -1,0 +1,98 @@
+body {
+  background-color:#666;
+  background:url('../../assets/img/Zannoudi Background.png');
+  font-family:'Amiri', serif;
+}
+
+nav.navbar.navbar-inverse.navigation-clean {
+  background-color:rgba(70,70,71,0.5);
+}
+
+nav.navbar.navbar-inverse.navigation-clean > a:active > a:hover {
+  background-color:rgb(255,0,122);
+}
+
+nav.navbar.navbar-inverse.navigation-clean.container.navbar-fixed-top {
+  background-color:rgb(1,63,101);
+}
+
+.logotitel h1 {
+  font-size:3em;
+}
+
+@media (max-width:1199px) {
+  .logotitel h1 {
+    font-size:2em;
+  }
+}
+
+@media (max-width:991px) {
+  .logotitel h1 {
+    font-size:1.5em;
+  }
+}
+
+div.Titel h1 {
+  color:white;
+  display:inline-block;
+}
+
+@media (max-width:756px) {
+  .hidePhone {
+    display:none !important;
+  }
+}
+
+@media (max-width:991px) {
+  article {
+    padding:0px 15px 0px 15px;
+  }
+}
+
+h1 img {
+  height:0.8em;
+  /*vertical-align:text-bottom;*/
+  margin-bottom:.2em;
+}
+
+.logotitel > h1 {
+  padding-right:25px;
+}
+
+div.bckgnd {
+  background-image:url(../../assets/img/BackgndGrey1.png);
+}
+
+img.vlag {
+  padding-right:10px;
+  max-width:40px;
+}
+
+@media (max-width:390px) {
+  div#vlaggen {
+    display:none;
+  }
+}
+
+li.livlag {
+  background:url('../../assets/img/vlaggen/nl.png') center right no-repeat;
+  padding:0 10px 5px 5px;
+  white-space:nowrap;
+}
+
+li.livlag.FR {
+  background:url('../../assets/img/vlaggen/nl.png') center right no-repeat;
+}
+
+li.livlag.AR {
+  background:url('../../assets/img/vlaggen/ar.png') center right no-repeat;
+}
+
+li.livlag.NL {
+  background:url('../../assets/img/vlaggen/nl.png') center right no-repeat;
+}
+
+li.livlag.GB {
+  background:url('../../assets/img/vlaggen/gb.png') center right no-repeat;
+}
+

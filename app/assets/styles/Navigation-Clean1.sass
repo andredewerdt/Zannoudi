@@ -1,0 +1,175 @@
+.navigation-clean
+  background: #fff
+  padding-top: 10px
+  padding-bottom: 10px
+  color: #333
+  border-radius: 0
+  box-shadow: none
+  border: none
+  margin-bottom: 0
+  .navbar-brand
+    font-weight: bold
+    color: inherit
+    &:hover
+      color: #222
+  &.navbar-inverse .navbar-brand:hover
+    color: #f0f0f0
+  .navbar-brand img
+    height: 100%
+    display: inline-block
+    margin-right: 10px
+    width: auto
+  .navbar-toggle
+    border-color: #ddd
+    &:hover, &:focus
+      background: none
+  &.navbar-inverse .navbar-toggle
+    border-color: #555
+  .navbar-toggle .icon-bar
+    background-color: #888
+  &.navbar-inverse .navbar-toggle .icon-bar
+    background-color: #eee
+  .navbar-collapse, .navbar-form
+    border-top-color: #ddd
+  &.navbar-inverse
+    .navbar-collapse, .navbar-form
+      border-top-color: #333
+  .navbar-nav >
+    .active > a, .open > a
+      background: none
+      box-shadow: none
+  &.navbar-default .navbar-nav > .active > a
+    color: #8f8f8f
+    box-shadow: none
+    background: none
+    pointer-events: none
+    &:focus, &:hover
+      color: #8f8f8f
+      box-shadow: none
+      background: none
+      pointer-events: none
+  &.navbar .navbar-nav > li > a
+    padding-left: 18px
+    padding-right: 18px
+  &.navbar-default .navbar-nav > li > a
+    color: #465765
+    &:focus, &:hover
+      color: #37434d !important
+      background-color: transparent
+  .navbar-nav > li > .dropdown-menu
+    margin-top: -5px
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+    background-color: #fff
+    border-radius: 2px
+  .dropdown-menu > li > a
+    &:focus
+      line-height: 2
+      font-size: 14px
+      color: #37434d
+      background: #eee
+      color: inherit
+    line-height: 2
+    font-size: 14px
+    color: #37434d
+    &:hover
+      background: #eee
+      color: inherit
+  &.navbar-inverse
+    /*background-color:#313132;
+    color: #fff
+    .navbar-nav >
+      .active > a
+        color: #00008c
+        box-shadow: none
+        background: none
+        pointer-events: none
+        &:focus, &:hover
+          color: #00008c
+          box-shadow: none
+          background: none
+          pointer-events: none
+      li >
+        a
+          color: #dfe8ee
+          &:focus, &:hover
+            color: #fff !important
+            background-color: transparent
+        .dropdown-menu
+          background-color: #959698
+    .dropdown-menu > li > a
+      &:focus
+        color: #f2f5f8
+        background: #363739
+      color: #f2f5f8
+      &:hover
+        background: #363739
+
+@media (max-width: 767px)
+  .navigation-clean .navbar-nav .open .dropdown-menu > li > a
+    color: #37434d
+    padding-top: 12px
+    padding-bottom: 12px
+    line-height: 1
+  .navigation-clean .navbar-nav .open .dropdown-menu
+    box-shadow: none
+  .navigation-clean .navbar-header
+    padding-top: 10px
+    padding-bottom: 10px
+  .navigation-clean
+    padding-top: 0
+    padding-bottom: 0
+  .navigation-clean.navbar-inverse .navbar-nav .open .dropdown-menu > li > a
+    color: #fff
+
+div
+  &#Heading.row
+    background-color: none
+  &.logo
+    display: inline-block
+    padding-right: 25px
+
+img.signature
+  display: block
+
+h1.slogan
+  text-align: center
+  color: white
+  padding-top: 30px
+  font-size: 7vw
+  font-family: amiri
+
+img.slogan
+  width: 80%
+  display: block
+  margin: auto
+
+div.slogan
+  align-content: center
+
+span.logo
+  display: block
+  margin-left: auto
+  text-align: center
+  margin-right: auto
+  margin-top: -20px
+  font-size: 18px
+  color: white
+
+div
+  &.Titel
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &#navbarwrapper
+    margin-bottom: 30px
+
+nav.navbar.navbar-inverse.navigation-clean
+  &.container.collapse
+    background-color: rgba(0, 11, 109, 1)
+  &.collapse
+    background-color: rgba(0, 11, 109, 1)
+    z-index: 3
+
+@media (min-width: 979px)
+  ul.nav li.dropdown:hover > ul.dropdown-menu
+    display: block
