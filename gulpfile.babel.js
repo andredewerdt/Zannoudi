@@ -7,8 +7,8 @@ import {stream as wiredep} from 'wiredep';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
-
-gulp.task('styles', () => {
+// convert scss to ./tmp/styles
+gulp.task('scss', () => {
   return gulp.src('app/assets/styles/*.scss')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
@@ -19,22 +19,12 @@ gulp.task('styles', () => {
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest('.tmp/styles'))
+    .pipe(gulp.dest('.tmp/assets/styles'))
     .pipe(reload({stream: true}));
 });
-
-gulp.task('scripts', () => {
-  return gulp.src('app/assets/scripts/**/*.js')
-    .pipe($.plumber())
-    .pipe($.sourcemaps.init())
-    .pipe($.babel())
-    .pipe($.sourcemaps.write('.'))
-    .pipe(gulp.dest('.tmp/scripts'))
-    .pipe(reload({stream: true}));
-});
-
+// convert sass to ./tmp/styles
 gulp.task('sass', () => {
-    return gulp.src('app/styles/*.sass')
+    return gulp.src('app/assets/styles/*.sass')
       .pipe($.plumber())
       .pipe($.sourcemaps.init())
       .pipe($.sass.sync({
@@ -44,14 +34,10 @@ gulp.task('sass', () => {
       }).on('error', $.sass.logError))
       .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
       .pipe($.sourcemaps.write())
-      .pipe(gulp.dest('.tmp/styles'))
+      .pipe(gulp.dest('.tmp/assets/styles'))
       .pipe(reload({stream: true}));
 });
-
-gulp.task('css',() => {
-  return gulp.src('app/assets/css/*.css')
-    .pipe(gulp.dest('.tmp/styles'));
-});
+// convert jade/pug to tmp/html
 gulp.task('pug', () => {
     return gulp.src('app/**/*.pug')
       .pipe($.plumber())
@@ -60,12 +46,20 @@ gulp.task('pug', () => {
       .pipe(reload({stream: true}));
 });
 
-gulp.task('views', () => {
-  return gulp.src('app/*.pug')
+gulp.task('scripts', () => {
+  return gulp.src('app/assets/js/**/*.js')
     .pipe($.plumber())
-    .pipe($.pug({pretty: true}))
-    .pipe(gulp.dest('.tmp'))
+    .pipe($.sourcemaps.init())
+    .pipe($.babel())
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('.tmp/scripts'))
     .pipe(reload({stream: true}));
+});
+
+// copy remaining css to ./tmp/styles
+gulp.task('css',() => {
+  return gulp.src('app/assets/styles/*.css')
+    .pipe(gulp.dest('.tmp/styles'));
 });
 
 function lint(files, options) {
@@ -110,17 +104,17 @@ gulp.task('lint', lint('app/assets/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
 
-gulp.task('html', ['pug','styles','sass','css', 'scripts'], () => {
+gulp.task('html', ['pug','scss','sass','css', 'scripts'], () => {
   return gulp.src(['app/*.html','.tmp/*.html'])
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
-  //  .pipe($.if('*.js', $.uglify()))
-  //  .pipe($.if('*.css', $.cssnano()))
+    .pipe($.if('*.js', $.uglify()))
+    .pipe($.if('*.css', $.cssnano()))
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('images', () => {
-  return gulp.src('app/assets/images/**/*')
+  return gulp.src('app/assets/img/**/*')
     .pipe($.if($.if.isFile, $.cache($.imagemin({
       progressive: true,
       interlaced: true,
@@ -132,7 +126,7 @@ gulp.task('images', () => {
       console.log(err);
       this.end();
     })))
-    .pipe(gulp.dest('dist/images'));
+    .pipe(gulp.dest('dist/assets/img'));
 });
 
 gulp.task('fonts', () => {
@@ -152,9 +146,18 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
+gulp.task('talen',(){
+  return gulp.src('app/*.pug' )
+  .pipe(rename(function (path){
+    path.dirname+= "/gb";
+    path.basename +="gb";
+  }))
+  .pipe(gulp.dest(".dist"));
+});
+
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['views','styles', 'scripts', 'fonts'], () => {
+gulp.task('serve', ['pug','sass','scss', 'scripts', 'fonts'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -168,13 +171,14 @@ gulp.task('serve', ['views','styles', 'scripts', 'fonts'], () => {
 
   gulp.watch([
     'app/*.html',
-    '.tmp/scripts/**/*.js',
-    'app/assets/images/**/*',
+    '.tmp/js/**/*.js',
+    'app/assets/img/**/*',
     '.tmp/fonts/**/*'
   ]).on('change', reload);
-  gulp.watch('app/**/*.pug', ['views']);
-  gulp.watch('app/assets/styles/**/*.scss', ['styles']);
-  gulp.watch('app/assets/scripts/**/*.js', ['scripts']);
+  gulp.watch('app/**/*.pug', ['pug']);
+  gulp.watch('app/assets/styles/**/*.scss', ['scscc']);
+  gulp.watch('app/assets/styles/**/*.sass', ['sass']);
+  gulp.watch('app/assets/js/**/*.js', ['scripts']);
   gulp.watch('app/assets/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
@@ -202,8 +206,8 @@ gulp.task('serve:test', ['scripts'], () => {
       }
     }
   });
-  gulp.watch('app/**/*.pug', ['views']);
-  gulp.watch('app/assets/scripts/**/*.js', ['scripts']);
+  gulp.watch('app/**/*.pug', ['pug']);
+  gulp.watch('app/assets/jss/**/*.js', ['scripts']);
   gulp.watch('test/spec/**/*.js').on('change', reload);
   gulp.watch('test/spec/**/*.js', ['lint:test']);
 });
