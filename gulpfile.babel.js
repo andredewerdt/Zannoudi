@@ -4,8 +4,8 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
-
 const $ = gulpLoadPlugins();
+var rename = require("gulp-rename");
 const reload = browserSync.reload;
 // convert scss to ./tmp/styles
 gulp.task('scss', () => {
@@ -146,7 +146,7 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
-gulp.task('talen',(){
+gulp.task('talen',() => {
   return gulp.src('app/*.pug' )
   .pipe(rename(function (path){
     path.dirname+= "/gb";

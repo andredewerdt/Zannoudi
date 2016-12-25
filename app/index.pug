@@ -10,8 +10,100 @@ if taal == 'AR'
 
 doctype html
 html.no-js(lang="")
-  include ./include/head.pug
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(name="keywords", content="Zannoudi, Hassan Zannoudi, Berber, Arabisch, vertalen, tolk, be-edigd tolk")
+  meta(name="keywords", content="Vertalen limburg, tolken berber, marokaans")
+
+  title Zannoudi
+  link(rel="shortcut icon", href="favicon.ico" )
+  link(rel="icon", type="image/gif", href="animated_favicon1.gif" )
+
+  <!-- Place favicon.ico in the root directory -->
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Amiri:700')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+  <!-- build:css css/styles.min.css -->
+  link(rel='stylesheet', href='assets/fonts/font-awesome.min.css')
+  link(rel='stylesheet', href='assets/styles/Carousel-Hero.css')
+  link(rel='stylesheet', href='assets/styles/mobilenav.css')
+  link(rel='stylesheet', href='assets/styles/Navigation-Clean1.css')
+  link(rel='stylesheet', href='assets/styles/Pretty-Footer.css')
+  link(rel='stylesheet', href='assets/styles/Pretty-Header.css')
+  link(rel='stylesheet', href='assets/styles/mystyles.css')
+  <!-- endbuild -->
+body
+  <!--[if lt IE 10]>
+  p.browserupgrade You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+  <![endif]-->
+  .container
+    .topblock
+      #Heading.row
+        .col-lg-12.Titel
+          .logo
+            img(src='assets/img/Zannoudi-logo-turning-1.gif', width='80px', height='80px')
+            span.hidden-xs.logo= Sinds1999
+          .logotitel
+            h1= Tolk
+            h1.hidePhone
+              img(src='assets/img/Initiaal.png')
+              | annoudi
+          #vlaggen
+            a(href='index.html')
+              img.vlag(src='assets/img/vlaggen/nl.png')
+            a(href='indexgb.html')
+              img.vlag(src='assets/img/vlaggen/gb.png')
+            a(href='indexfr.html')
+              img.vlag(src='assets/img/vlaggen/fr.png')
+            a(href='indexar.html')
+              img.vlag(src='assets/img/vlaggen/ar.png')
+    .containerblock
+      #navbarwrapper
+        nav.navbar.navbar-inverse.navigation-clean
+          .container-fluid
+            .navbar-header
+              a.navbar-brand.navbar-link(href='index.html')
+                span Zannoudi
+              button.navbar-toggle.collapsed(data-toggle='collapse', data-target='#navcol-1')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            #navcol-1.collapse.navbar-collapse
+              ul.nav.navbar-nav.navbar-right
+                li.active(role='presentation')
+                  a(href='index.html') Home
+                li.dropdown
+                  a.dropdown-toggle(data-toggle='dropdown', aria-expanded='false', href='tolk.html')= Tolk
+                    span.caret
+                  ul.dropdown-menu(role='menu')
+                    li(role='presentation')
+                      a(href= beedigdtolkLink)= BeedigdTolk
+                    li(role='presentation')
+                      a(href= specdienstLink)= SpecDienst
+                    li(role='presentation')
+                      a(href= downloadsLink)= Downloads
+                li(role='presentation')
+                  a(href= referentielink)= Referentie
+                li(role='presentation')
+                  a(href= cursuslink)= Stages
+                li(role='presentation')
+                  a(href= contactlink)= Contact
+                li.dropdown
+                  a.dropdown-toggle.hidden-sm.hidden-md.hidden-lg(data-toggle='dropdown', aria-expanded='false', href='#')= Taal
+                    span.caret
+                  ul.dropdown-menu(role='menu')
+                    li.livlag.NL(role='presentation')
+                      a(href= HomeKnop) NL
+                    li.livlag.GB(role='presentation')
+                      a(href= HomeGBknop) GB
+                    li.livlag.FR(role='presentation')
+                      a(href= HomeFRknop) FR
+                    li.livlag.AR(role='presentation')
+                      a(href= HomeARknop) AR
         include ./include/carousel.pug
         include ./include/footer.pug
         include ./include/mobile-nav.pug
-    include ./include/scripts.pug
+  include ./include/scripts.pug
