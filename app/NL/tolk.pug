@@ -1,16 +1,16 @@
-- var taal = 'NL'
+include ./taal.pug
 if taal == 'NL'
-  include ./include/NL/var.pug
+  include ../include/NL/var.pug
 if taal == 'FR'
-  include ./include/FR/var.pug
+  include ../include/FR/var.pug
 if taal == 'GB'
-  include ./include/GB/var.pug
+  include ../include/GB/var.pug
 if taal == 'AR'
-  include ./include/AR/var.pug
+  include ../include/AR/var.pug
 
 doctype html
 html.no-js(lang="")
-include ./include/head.pug
+include ../include/head.pug
 body
   <!--[if lt IE 10]>
   p.browserupgrade You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
@@ -20,22 +20,22 @@ body
       #Heading.row
         .col-lg-12.Titel
           .logo
-            img(src='assets/img/Zannoudi-logo-turning-1.gif', width='80px', height='80px')
+            img(src='../assets/img/Zannoudi-logo-turning-1.gif', width='80px', height='80px')
             span.hidden-xs.logo= Sinds1999
           .logotitel
             h1= Tolk
             h1.hidePhone
-              img(src='assets/img/Initiaal.png')
+              img(src='../assets/img/Initiaal.png')
               | annoudi
           #vlaggen
-            a(href='index.html')
-              img.vlag(src='assets/img/vlaggen/nl.png')
-            a(href='indexgb.html')
-              img.vlag(src='assets/img/vlaggen/gb.png')
-            a(href='indexfr.html')
-              img.vlag(src='assets/img/vlaggen/fr.png')
-            a(href='indexar.html')
-              img.vlag(src='assets/img/vlaggen/ar.png')
+            a(href='../NL/index.html')
+              img.vlag(src='../assets/img/vlaggen/nl.png')
+            a(href='../GB/index.html')
+              img.vlag(src='../assets/img/vlaggen/gb.png')
+            a(href='../FR/index.html')
+              img.vlag(src='../assets/img/vlaggen/fr.png')
+            a(href='../AR/index.html')
+              img.vlag(src='../assets/img/vlaggen/ar.png')
     .containerblock
       #navbarwrapper
         nav.navbar.navbar-inverse.navigation-clean
@@ -56,7 +56,7 @@ body
                   a.dropdown-toggle(data-toggle='dropdown', aria-expanded='false', href='tolk.html')= Tolk
                     span.caret
                   ul.dropdown-menu(role='menu')
-                    li(role='presentation')
+                    li.active(role='presentation')
                       a(href= beedigdtolkLink)= BeedigdTolk
                     li(role='presentation')
                       a(href= specdienstLink)= SpecDienst
@@ -64,7 +64,7 @@ body
                       a(href= downloadsLink)= Downloads
                 li(role='presentation')
                   a(href= referentielink)= Referentie
-                li.active(role='presentation')
+                li(role='presentation')
                   a(href= cursuslink)= Stages
                 li(role='presentation')
                   a(href= contactlink)= Contact
@@ -84,13 +84,13 @@ body
         .col-md-10.col-md-offset-1
           .editcms.cushycms
             if taal == 'NL'
-              include ./include/NL/html_reservering.pug
+              include ../include/NL/html_tolk.pug
             if taal == 'FR'
-              include ./include/FR/html_reservering.pug
+              include ../include/FR/html_tolk.pug
             if taal == 'GB'
-              include ./include/GB/html_reservering.pug
+              include ../include/GB/html_tolk.pug
             if taal == 'AR'
-              include ./include/AR/html_reservering.pug
-      include ./include/footer.pug
-      include ./include/mobile-nav.pug
-  include ./include/scripts.pug
+              include ../include/AR/html_tolk.pug
+      include ../include/footer.pug
+      include ../include/mobile-nav.pug
+include ../include/scripts.pug

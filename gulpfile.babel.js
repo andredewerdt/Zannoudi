@@ -7,6 +7,16 @@ import {stream as wiredep} from 'wiredep';
 const $ = gulpLoadPlugins();
 var rename = require("gulp-rename");
 const reload = browserSync.reload;
+var argv = require('yargs').argv;
+
+var taal = (argv.taal===undefined)? 'NL': argv.taal;
+
+gulp.task('SetTaal',()=>{
+  return gulp.src('app/taal.pug')
+  .pipe($.template({taal: taal}))
+  .pipe(gulp.dest('app/include/'));
+});
+
 // convert scss to ./tmp/styles
 gulp.task('scss', () => {
   return gulp.src('app/assets/styles/*.scss')
@@ -107,8 +117,8 @@ gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 gulp.task('html', ['pug','scss','sass','css', 'scripts'], () => {
   return gulp.src(['app/*.html','.tmp/*.html'])
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.cssnano()))
+//    .pipe($.if('*.js', $.uglify()))
+//    .pipe($.if('*.css', $.cssnano()))
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
     .pipe(gulp.dest('dist'));
 });
@@ -146,13 +156,15 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
-gulp.task('talen',() => {
-  return gulp.src('app/*.pug' )
+
+gulp.task('CreateTalen',() => {
+  return gulp.src('app/NL/*.pug' )
   .pipe(rename(function (path){
-    path.dirname+= "/gb";
-    path.basename +="gb";
+    path.dirname+= "/"+taal;
+    path.basename +="";
   }))
-  .pipe(gulp.dest(".dist"));
+  .pipe($.template({taal: taal}))
+  .pipe(gulp.dest("app"));
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
