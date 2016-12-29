@@ -5,7 +5,6 @@ import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
 const $ = gulpLoadPlugins();
-var rename = require("gulp-rename");
 const reload = browserSync.reload;
 var argv = require('yargs').argv;
 
@@ -49,7 +48,7 @@ gulp.task('sass', () => {
 });
 // convert jade/pug to tmp/html
 gulp.task('pug', () => {
-    return gulp.src('app/**/*.pug')
+    return gulp.src(['app/**/*.pug','!app/{include,include/**}'])
       .pipe($.plumber())
       .pipe($.pug({pretty:true})) // pip to jade plugin
       .pipe(gulp.dest('.tmp/')) // tell gulp our output folder
@@ -110,17 +109,18 @@ const LintOptions = {
         "no-unused-expressions": 0
       }
 };
-gulp.task('lint', lint('app/assets/scripts/**/*.js'));
+gulp.task('lint', lint('app/assets/js/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
 
 gulp.task('html', ['pug','scss','sass','css', 'scripts'], () => {
-  return gulp.src(['app/*.html','.tmp/*.html'])
-    .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
-//    .pipe($.if('*.js', $.uglify()))
-//    .pipe($.if('*.css', $.cssnano()))
+  return gulp.src(['app/*.html','.tmp/**/*.html'])
+    .pipe($.useref({searchPath: ['.tmp/**/*', 'app/**/*', '.']}))
+//    .pipe($.debug())
+    .pipe($.if('*.js', $.uglify()))
+    .pipe($.if('*.css', $.cssnano()))
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('images', () => {
@@ -159,7 +159,7 @@ gulp.task('extras', () => {
 
 gulp.task('CreateTalen',() => {
   return gulp.src('app/NL/*.pug' )
-  .pipe(rename(function (path){
+  .pipe($.rename(function (path){
     path.dirname+= "/"+taal;
     path.basename +="";
   }))
