@@ -114,9 +114,8 @@ gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
 
 gulp.task('html', ['pug','scss','sass','css', 'scripts'], () => {
-  return gulp.src(['app/*.html','.tmp/**/*.html'])
+  return gulp.src(['app/*.html','.tmp/**/*.html','.tmp/**/*.css'])
     .pipe($.useref({searchPath: ['.tmp/**/*', 'app/**/*', '.']}))
-//    .pipe($.debug())
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.cssnano()))
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
