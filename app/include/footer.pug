@@ -4,7 +4,7 @@ footer
       h3
         a(href= HomeKnop) Zannoudi
       p.links
-        a(href= HomeKnop) Home
+        a(href= HomeKnop)= Home
         strong  ·&nbsp
         a(href= tolklink)= Tolkv
         strong  ·&nbsp
@@ -25,9 +25,10 @@ footer
         i.fa.fa-phone.footer-contacts-icon
         p.footer-center-info.email.text-left +31 63 85 32 719
       div
-        a(href='mailto:info@zannoudi.nl')
+        a(href="mailto:info@zannoudi.nl")
           i.fa.fa-envelope.footer-contacts-icon
-        p info@zannoudi.nl
+        p
+          span.reverse ln.iduonnaz@ofni
     .clearfix.visible-sm-block
     .col-md-4.footer-about
       h4= contactpersoon
@@ -45,5 +46,3 @@ footer
           i.fa.fa-twitter
         a(href='#')
           i.fa.fa-linkedin
-        a(href='#')
-          i.fa.fa-github
