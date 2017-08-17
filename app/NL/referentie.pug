@@ -30,6 +30,7 @@ body
           #vlaggen
             a(href='../NL/index.html')
               img.vlag(src='../assets/img/vlaggen/nl.png')
+          if meerTalen == "True"
             a(href='../GB/index.html')
               img.vlag(src='../assets/img/vlaggen/gb.png')
             a(href='../FR/index.html')
@@ -51,20 +52,18 @@ body
             #navcol-1.collapse.navbar-collapse
               ul.nav.navbar-nav.navbar-right
                 li(role='presentation')
-                  a(href='index.html')= Home
+                  a(href= beedigdtolkLink)= BeedigdTolk
                 li.dropdown
                   a.dropdown-toggle(data-toggle='dropdown', aria-expanded='false', href='tolk.html')= Diensten
                     span.caret
                   ul.dropdown-menu(role='menu')
                     li(role='presentation')
-                      a(href= beedigdtolkLink)= BeedigdTolk
-                    li(role='presentation')
                       a(href= specdienstLink)= SpecDienst
-                    li(role='presentation')
+                    li.verberg(role='presentation')
                       a(href= downloadsLink)= Downloads
                 li.active(role='presentation')
                   a(href= referentielink)= Referentie
-                li(role='presentation')
+                li.verberg(role='presentation')
                   a(href= cursuslink)= Stages
                 li(role='presentation')
                   a(href= contactlink)= Contact
@@ -74,6 +73,7 @@ body
                   ul.dropdown-menu(role='menu')
                     li.livlag.NL(role='presentation')
                       a(href= HomeKnop) NL
+                  if meerTalen == "True"    
                     li.livlag.GB(role='presentation')
                       a(href= HomeGBknop) GB
                     li.livlag.FR(role='presentation')
